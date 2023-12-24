@@ -11,7 +11,7 @@ const Home = () => {
       // Access the camera stream
       videoRef.current.srcObject = stream;
 
-      // Display the camera stream in a video element
+      // Display the camera stream in a video element (hidden)
       videoRef.current.play();
     } catch (error) {
       console.error('Error accessing camera:', error);
@@ -50,7 +50,7 @@ const Home = () => {
         {/* Display the captured image here */}
         <video ref={videoRef} className="w-full h-full" style={{ display: 'none' }}></video>
       </div>
-      <CaptureButton onCapture={takeSnapshot} />
+      <CaptureButton onCapture={handleCapture} />
     </div>
   );
 };
