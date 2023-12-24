@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import CaptureButton from './layout/CaptureButton';
 
 const Home = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const [isCameraActive, setIsCameraActive] = useState(false);
 
   const handleCapture = async () => {
     try {
@@ -14,6 +15,7 @@ const Home = () => {
 
       // Display the camera stream in a video element
       videoRef.current.play();
+      setIsCameraActive(true);
     } catch (error) {
       console.error('Error accessing camera:', error);
     }
@@ -38,16 +40,29 @@ const Home = () => {
 
     // You can use the imageDataUrl to display the captured image or send it to a server
     console.log('Captured Image:', imageDataUrl);
+
+    // Stop the camera stream after capturing the image
+    const streamTracks = video.srcObject.getTracks();
+    streamTracks.forEach((track) => track.stop());
+
+    // Set the camera to inactive
+    setIsCameraActive(false);
   };
 
   return (
     <div className="text-center">
       <div className="bg-blue-500 rounded-md p-4 mb-4 h-48 w-64 relative">
         {/* Display the captured image here */}
-        <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" style={{ borderRadius: 'inherit' }}></canvas>
+        {isCameraActive && (
+          <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" style={{ borderRadius: 'inherit' }}></canvas>
+        )}
       </div>
+      {isCameraActive ? (
+        <CaptureButton onCapture={takeSnapshot} />
+      ) : (
+        <CaptureButton onCapture={handleCapture} />
+      )}
       <video ref={videoRef} className="hidden"></video>
-      <CaptureButton onCapture={handleCapture} />
     </div>
   );
 };
