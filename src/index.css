@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body{
+    background-color: #6068ff;
+    color: #f9f6f6;
+    font-family: 'Inter', sans-serif;
+    
+}
+@layer base{
+    body {
+      background-color: #14161b;
+    }
+  }
+  
+  .slick-slide > div {
+    margin: 0 10px;
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color:orange !important;
+  }

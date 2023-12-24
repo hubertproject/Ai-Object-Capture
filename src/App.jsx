@@ -1,7 +1,38 @@
-export default function App() {
+ 
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Contact from "./components/Contact";
+import About from "./components/About";
+ 
+ 
+import Services from "./components/Services";
+// import Footer from "./components/Footer";
+ 
+
+function App() {
+  
+
+
   return (
-    <h1 className="text-3xl font-bold underline text-blue-500 mx-5 mt-8">
-      Hello world!
-    </h1>
-  )
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+           
+          
+           
+          <Route path="/contact" element={<Contact />} />
+           
+        </Routes>
+       {/*  <Footer /> */}
+      </div>
+    </Router>
+  );
 }
+
+export default App;
