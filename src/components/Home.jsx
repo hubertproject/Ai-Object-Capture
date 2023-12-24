@@ -6,15 +6,14 @@ const Home = () => {
   const canvasRef = useRef(null);
   const [isCameraActive, setIsCameraActive] = useState(false);
 
-  const handleCapture = async () => {
+  const activateCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
 
       // Access the camera stream
       videoRef.current.srcObject = stream;
 
-      // Display the camera stream in a video element
-      videoRef.current.play();
+      // Set the camera to active
       setIsCameraActive(true);
     } catch (error) {
       console.error('Error accessing camera:', error);
@@ -60,7 +59,7 @@ const Home = () => {
       {isCameraActive ? (
         <CaptureButton onCapture={takeSnapshot} />
       ) : (
-        <CaptureButton onCapture={handleCapture} />
+        <CaptureButton onCapture={activateCamera} />
       )}
       <video ref={videoRef} className="hidden"></video>
     </div>
