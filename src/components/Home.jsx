@@ -53,7 +53,7 @@ const Home = () => {
       <div className="bg-blue-500 rounded-md p-4 mb-4 h-48 w-64 relative">
         {/* Display the captured image here */}
         {isCameraActive && (
-          <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" style={{ borderRadius: 'inherit' }}></canvas>
+          <canvas ref={canvasRef} className="w-full h-full" style={{ borderRadius: 'inherit' }}></canvas>
         )}
       </div>
       {isCameraActive ? (
@@ -61,7 +61,7 @@ const Home = () => {
       ) : (
         <CaptureButton onCapture={activateCamera} />
       )}
-      <video ref={videoRef} className="hidden"></video>
+      <video ref={videoRef} className="hidden" autoPlay></video>
     </div>
   );
 };
