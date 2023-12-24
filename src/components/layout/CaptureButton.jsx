@@ -1,9 +1,12 @@
- // src/components/CaptureButton.jsx
+ // CaptureButton.jsx
 import React from 'react';
 
 const CaptureButton = ({ onCapture }) => {
   return (
-    <button onClick={onCapture} className="bg-blue-500 text-white p-2 rounded-md rounded-b-none">
+    <button
+      className="bg-green-500 rounded-md p-2 text-white"
+      onClick={onCapture}
+    >
       Capture
     </button>
   );

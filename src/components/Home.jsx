@@ -47,7 +47,7 @@ const Home = () => {
         <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" style={{ borderRadius: 'inherit' }}></canvas>
       </div>
       <video ref={videoRef} className="hidden"></video>
-      <CaptureButton onCapture={takeSnapshot} />
+      <CaptureButton onCapture={handleCapture} />
     </div>
   );
 };
